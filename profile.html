@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AquaSentinel</title>
+    <meta name="description" content="User profile page for AquaSentinel with image gallery of analysis results.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">AquaSentinel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Landing</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container fade-in">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar">AS</div>
+                <div class="profile-info">
+                    <h2>Dr. Alex Sentinel</h2>
+                    <p><strong>Email:</strong> alex.sentinel@aquasentinel.org</p>
+                    <p><strong>Role:</strong> Marine Research Scientist</p>
+                    <p><strong>Department:</strong> Microplastics Detection Lab</p>
+                    <p><strong>Last Login:</strong> <span id="lastLogin">Today, 10:30 AM</span></p>
+                    <p style="margin-top: 1rem; color: #00bcd4;"><strong>Specialization:</strong> AI-powered environmental analysis and ocean conservation</p>
+                </div>
+            </div>
+
+            <!-- User Statistics -->
+            <div class="card mb-2">
+                <h3>📊 Your Analysis Statistics</h3>
+                <div class="flex justify-between gap-1" style="flex-wrap: wrap;">
+                    <div style="background: rgba(0, 188, 212, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 2rem; color: #00bcd4; font-weight: 700;">347</div>
+                        <div style="color: #b0c4de;">Samples Analyzed</div>
+                    </div>
+                    <div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 2rem; color: #4caf50; font-weight: 700;">89.2%</div>
+                        <div style="color: #b0c4de;">Accuracy Rate</div>
+                    </div>
+                    <div style="background: rgba(255, 152, 0, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 2rem; color: #ff9800; font-weight: 700;">23</div>
+                        <div style="color: #b0c4de;">Reports Generated</div>
+                    </div>
+                    <div style="background: rgba(156, 39, 176, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 2rem; color: #9c27b0; font-weight: 700;">156</div>
+                        <div style="color: #b0c4de;">Hours Logged</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Gallery -->
+            <div class="card">
+                <h3>🖼️ Analysis Results Gallery</h3>
+                <p style="color: #b0c4de; margin-bottom: 2rem;">Collection of visualization results from microplastics detection models</p>
+                
+                <div id="galleryLoading" class="loading">Loading image gallery...</div>
+                <div id="galleryError" class="error hidden">Failed to load gallery images. Please try again.</div>
+                
+                <div class="gallery" id="imageGallery" style="display: none;">
+                    <!-- Gallery items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card mt-2">
+                <h3>📋 Recent Activity</h3>
+                <div style="space-y: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(0, 188, 212, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                        <div>
+                            <div style="color: #00bcd4; font-weight: 600;">Model Analysis Completed</div>
+                            <div style="color: #b0c4de; font-size: 0.9rem;">Processed 45 water samples from Pacific Ocean region</div>
+                        </div>
+                        <div style="color: #b0c4de; font-size: 0.9rem;">2 hours ago</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(76, 175, 80, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                        <div>
+                            <div style="color: #4caf50; font-weight: 600;">Data Export Generated</div>
+                            <div style="color: #b0c4de; font-size: 0.9rem;">Exported prediction results to CSV format</div>
+                        </div>
+                        <div style="color: #b0c4de; font-size: 0.9rem;">5 hours ago</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(255, 152, 0, 0.05); border-radius: 8px; margin-bottom: 1rem;">
+                        <div>
+                            <div style="color: #ff9800; font-weight: 600;">Model Training Updated</div>
+                            <div style="color: #b0c4de; font-size: 0.9rem;">Enhanced CNN model with new training dataset</div>
+                        </div>
+                        <div style="color: #b0c4de; font-size: 0.9rem;">1 day ago</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(156, 39, 176, 0.05); border-radius: 8px;">
+                        <div>
+                            <div style="color: #9c27b0; font-weight: 600;">Research Paper Published</div>
+                            <div style="color: #b0c4de; font-size: 0.9rem;">Co-authored study on AI-based microplastics detection</div>
+                        </div>
+                        <div style="color: #b0c4de; font-size: 0.9rem;">3 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" alt="Enlarged view">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load profile gallery when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileGallery();
+            updateLastLogin();
+        });
+
+        function updateLastLogin() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const dateString = now.toLocaleDateString() === new Date().toLocaleDateString() ? 'Today' : now.toLocaleDateString();
+            document.getElementById('lastLogin').textContent = `${dateString}, ${timeString}`;
+        }
+    </script>
+</body>
+</html>

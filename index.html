@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel - AI-Powered Microplastics Detection</title>
+    <meta name="description" content="AquaSentinel uses AI-powered CNN models to detect microplastics in water samples, contributing to cleaner oceans.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">AquaSentinel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Landing</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>AquaSentinel</h1>
+                <p>AI-powered detection of microplastics in water samples</p>
+                <button class="btn" onclick="showSignInModal()">Sign In</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideSignInModal()">&times;</span>
+            <div class="form-container card">
+                <h2 style="text-align: center; color: #00bcd4; margin-bottom: 2rem;">Sign In to AquaSentinel</h2>
+                <form id="signInForm" onsubmit="handleSignIn(event)">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                    </div>
+                    <div class="form-group text-center">
+                        <p style="color: #b0c4de; font-size: 0.9rem;">Demo credentials: admin / password</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

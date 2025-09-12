@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AquaSentinel</title>
+    <meta name="description" content="Learn about AquaSentinel, our mission to detect microplastics using AI, and our commitment to ocean conservation.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">AquaSentinel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Landing</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container fade-in">
+            <!-- Hero Section -->
+            <div class="text-center mb-2">
+                <h1 style="color: #00bcd4; font-size: 3rem; margin-bottom: 1rem;">About AquaSentinel</h1>
+                <p style="font-size: 1.3rem; color: #b0c4de; max-width: 800px; margin: 0 auto;">
+                    Pioneering the future of marine environmental monitoring through artificial intelligence
+                </p>
+            </div>
+
+            <!-- Mission Statement -->
+            <div class="card mb-2">
+                <h3>🌊 Our Mission</h3>
+                <p>
+                    AquaSentinel is a research-driven project dedicated to detecting microplastics in water samples using advanced AI technology. 
+                    Built with state-of-the-art CNN (Convolutional Neural Network) models and open-source tools, our platform contributes towards 
+                    cleaner oceans and a sustainable future for marine ecosystems.
+                </p>
+                <p>
+                    We believe that by combining cutting-edge artificial intelligence with environmental science, we can provide researchers, 
+                    scientists, and conservationists with the tools they need to understand and combat plastic pollution in our oceans.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="dashboard-grid mb-2">
+                <div class="card">
+                    <h3>🤖 AI-Powered Detection</h3>
+                    <p>
+                        Our advanced CNN models are trained on extensive datasets of microplastic samples, enabling accurate identification 
+                        and classification of various plastic particles in water samples with high confidence levels.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Comprehensive Analysis</h3>
+                    <p>
+                        Generate detailed reports with confidence histograms, sample predictions, and statistical analysis to support 
+                        your research and decision-making processes in marine conservation efforts.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🔬 Research-Focused</h3>
+                    <p>
+                        Designed specifically for researchers and environmental scientists, our platform provides the tools and visualizations 
+                        needed for rigorous scientific analysis and publication-ready results.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🌍 Open Science</h3>
+                    <p>
+                        Built with open-source technologies and transparent methodologies to promote collaboration in the global effort 
+                        to understand and mitigate marine plastic pollution.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="card mb-2">
+                <h3>⚙️ Technology & Methodology</h3>
+                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 1.5rem;">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧠</div>
+                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Deep Learning</h4>
+                        <p style="font-size: 0.9rem; color: #b0c4de;">CNN models for image classification and object detection</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐍</div>
+                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Python & TensorFlow</h4>
+                        <p style="font-size: 0.9rem; color: #b0c4de;">Robust machine learning framework for model development</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📸</div>
+                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Computer Vision</h4>
+                        <p style="font-size: 0.9rem; color: #b0c4de;">Advanced image processing and pattern recognition</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📈</div>
+                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Data Analytics</h4>
+                        <p style="font-size: 0.9rem; color: #b0c4de;">Statistical analysis and visualization tools</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact & Future -->
+            <div class="dashboard-grid mb-2">
+                <div class="card">
+                    <h3>🎯 Impact Goals</h3>
+                    <ul style="color: #b0c4de; line-height: 2;">
+                        <li>Enable faster and more accurate microplastic detection</li>
+                        <li>Support marine research and conservation efforts</li>
+                        <li>Contribute to global ocean health monitoring</li>
+                        <li>Advance AI applications in environmental science</li>
+                        <li>Facilitate data-driven policy decisions</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🚀 Future Developments</h3>
+                    <ul style="color: #b0c4de; line-height: 2;">
+                        <li>Real-time analysis capabilities</li>
+                        <li>Mobile app for field researchers</li>
+                        <li>Integration with IoT sensors</li>
+                        <li>Expanded particle type detection</li>
+                        <li>Global database collaboration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Team & Contact -->
+            <div class="card">
+                <h3>👥 Development Team</h3>
+                <p style="margin-bottom: 2rem;">
+                    AquaSentinel is developed by a multidisciplinary team of marine biologists, data scientists, and AI researchers 
+                    committed to leveraging technology for environmental conservation.
+                </p>
+                
+                <div style="background: rgba(0, 188, 212, 0.1); padding: 2rem; border-radius: 12px; text-align: center;">
+                    <h4 style="color: #00bcd4; margin-bottom: 1rem;">Get Involved</h4>
+                    <p style="color: #b0c4de; margin-bottom: 2rem;">
+                        Join our mission to protect marine ecosystems through innovative AI solutions. Whether you're a researcher, 
+                        developer, or ocean advocate, there are many ways to contribute.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://github.com/zyronvon/Microplastics_results" class="btn" target="_blank">📋 View Research</a>
+                        <a href="mailto:info@aquasentinel.org" class="btn-secondary">✉️ Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credits -->
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(27, 38, 59, 0.5); border-radius: 12px;">
+                <p style="color: #b0c4de; font-size: 0.9rem;">
+                    <strong>Data Source:</strong> Research results from 
+                    <a href="https://github.com/zyronvon/Microplastics_results" style="color: #00bcd4;" target="_blank">
+                        Microplastics Detection Research Repository
+                    </a>
+                </p>
+                <p style="color: #888; font-size: 0.8rem; margin-top: 0.5rem;">
+                    © 2024 AquaSentinel Project. Built for marine conservation and research advancement.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
