@@ -5,7 +5,7 @@ let currentModal = null;
 // GitHub repository URLs
 const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/zyronvon/Microplastics_results/main/final_results/';
 const DATA_URLS = {
-    csv: GITHUB_BASE_URL + 'prediction.csv',
+    csv: GITHUB_BASE_URL + 'predictions.csv',
     confidenceHistogram: GITHUB_BASE_URL + 'confidence_histogram.png',
     misclassifiedSamples: GITHUB_BASE_URL + 'misclassified_samples.png',
     samplePredictions: GITHUB_BASE_URL + 'sample_predictions.png'
@@ -569,3 +569,4 @@ if (typeof module !== 'undefined' && module.exports) {
         exportCSV
     };
 }
+
