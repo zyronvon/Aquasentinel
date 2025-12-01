@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - AquaSentinel</title>
+<title>Project info - AquaSentinel</title>
     <meta name="description" content="Learn about AquaSentinel, our mission to detect microplastics using AI, and our commitment to ocean conservation.">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,10 +13,9 @@
         <nav>
             <a href="index.html" class="logo">AquaSentinel</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Landing</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="about.html" class="active">Project info</a></li>
                 <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
@@ -28,15 +27,15 @@
         <div class="container fade-in">
             <!-- Hero Section -->
             <div class="text-center mb-2">
-                <h1 style="color: #00bcd4; font-size: 3rem; margin-bottom: 1rem;">About AquaSentinel</h1>
-                <p style="font-size: 1.3rem; color: #b0c4de; max-width: 800px; margin: 0 auto;">
-                    Pioneering the future of marine environmental monitoring through artificial intelligence
+<h1 style="color: var(--accent); font-size: 3rem; margin-bottom: 1rem;">Project info &amp; pipeline</h1>
+                <p style="font-size: 1.1rem; color: var(--muted); max-width: 800px; margin: 0 auto;">
+                    AquaSentinel uses a USB camera to capture water sample images, runs a local CNN model, and surfaces the resulting predictions and diagnostics through a lightweight dashboard.
                 </p>
             </div>
 
             <!-- Mission Statement -->
             <div class="card mb-2">
-                <h3>🌊 Our Mission</h3>
+                <h3>Our mission</h3>
                 <p>
                     AquaSentinel is a research-driven project dedicated to detecting microplastics in water samples using advanced AI technology. 
                     Built with state-of-the-art CNN (Convolutional Neural Network) models and open-source tools, our platform contributes towards 
@@ -48,64 +47,55 @@
                 </p>
             </div>
 
-            <!-- Features Grid -->
-            <div class="dashboard-grid mb-2">
-                <div class="card">
-                    <h3>🤖 AI-Powered Detection</h3>
-                    <p>
-                        Our advanced CNN models are trained on extensive datasets of microplastic samples, enabling accurate identification 
-                        and classification of various plastic particles in water samples with high confidence levels.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <h3>📊 Comprehensive Analysis</h3>
-                    <p>
-                        Generate detailed reports with confidence histograms, sample predictions, and statistical analysis to support 
-                        your research and decision-making processes in marine conservation efforts.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <h3>🔬 Research-Focused</h3>
-                    <p>
-                        Designed specifically for researchers and environmental scientists, our platform provides the tools and visualizations 
-                        needed for rigorous scientific analysis and publication-ready results.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <h3>🌍 Open Science</h3>
-                    <p>
-                        Built with open-source technologies and transparent methodologies to promote collaboration in the global effort 
-                        to understand and mitigate marine plastic pollution.
-                    </p>
+            <!-- Features Row -->
+            <div class="card mb-2">
+                <div class="feature-row">
+                    <div class="feature-row-item">
+                        <h3>AI-powered detection</h3>
+                        <p>
+                            Our CNN models are trained on microplastics datasets to identify and classify particles in water samples with high confidence.
+                        </p>
+                    </div>
+                    <div class="feature-row-item">
+                        <h3>Comprehensive analysis</h3>
+                        <p>
+                            Confidence histograms, sample predictions, and summary statistics support downstream research and reporting.
+                        </p>
+                    </div>
+                    <div class="feature-row-item">
+                        <h3>Research-focused</h3>
+                        <p>
+                            Built for students and researchers who need quick insight into model behaviour rather than a full product.
+                        </p>
+                    </div>
+                    <div class="feature-row-item">
+                        <h3>Open science</h3>
+                        <p>
+                            Code and outputs are open so others can reproduce, audit, and extend the work for their own projects.
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <!-- Technology Stack -->
             <div class="card mb-2">
-                <h3>⚙️ Technology & Methodology</h3>
-                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 1.5rem;">
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧠</div>
-                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Deep Learning</h4>
-                        <p style="font-size: 0.9rem; color: #b0c4de;">CNN models for image classification and object detection</p>
+                <h3>Technology &amp; methodology</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="flex: 1 1 200px; text-align: left; padding: 1rem;">
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Deep learning</h4>
+                        <p style="font-size: 0.9rem; color: var(--muted);">CNN models for microplastics image classification and confidence estimation.</p>
                     </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐍</div>
-                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Python & TensorFlow</h4>
-                        <p style="font-size: 0.9rem; color: #b0c4de;">Robust machine learning framework for model development</p>
+                    <div style="flex: 1 1 200px; text-align: left; padding: 1rem;">
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Python &amp; TensorFlow</h4>
+                        <p style="font-size: 0.9rem; color: var(--muted);">Local model training and inference executed on the operator machine.</p>
                     </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📸</div>
-                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Computer Vision</h4>
-                        <p style="font-size: 0.9rem; color: #b0c4de;">Advanced image processing and pattern recognition</p>
+                    <div style="flex: 1 1 200px; text-align: left; padding: 1rem;">
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Computer vision</h4>
+                        <p style="font-size: 0.9rem; color: var(--muted);">Pre-processing of USB camera frames and region-of-interest extraction.</p>
                     </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📈</div>
-                        <h4 style="color: #00bcd4; margin-bottom: 0.5rem;">Data Analytics</h4>
-                        <p style="font-size: 0.9rem; color: #b0c4de;">Statistical analysis and visualization tools</p>
+                    <div style="flex: 1 1 200px; text-align: left; padding: 1rem;">
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Data analytics</h4>
+                        <p style="font-size: 0.9rem; color: var(--muted);">Aggregation of predictions into histograms, summaries, and exportable CSVs.</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +103,7 @@
             <!-- Impact & Future -->
             <div class="dashboard-grid mb-2">
                 <div class="card">
-                    <h3>🎯 Impact Goals</h3>
+                    <h3>Impact goals</h3>
                     <ul style="color: #b0c4de; line-height: 2;">
                         <li>Enable faster and more accurate microplastic detection</li>
                         <li>Support marine research and conservation efforts</li>
@@ -124,7 +114,7 @@
                 </div>
 
                 <div class="card">
-                    <h3>🚀 Future Developments</h3>
+                    <h3>Future developments</h3>
                     <ul style="color: #b0c4de; line-height: 2;">
                         <li>Real-time analysis capabilities</li>
                         <li>Mobile app for field researchers</li>
@@ -135,32 +125,11 @@
                 </div>
             </div>
 
-            <!-- Team & Contact -->
-            <div class="card">
-                <h3>👥 Development Team</h3>
-                <p style="margin-bottom: 2rem;">
-                    AquaSentinel is developed by a multidisciplinary team of marine biologists, data scientists, and AI researchers 
-                    committed to leveraging technology for environmental conservation.
-                </p>
-                
-                <div style="background: rgba(0, 188, 212, 0.1); padding: 2rem; border-radius: 12px; text-align: center;">
-                    <h4 style="color: #00bcd4; margin-bottom: 1rem;">Get Involved</h4>
-                    <p style="color: #b0c4de; margin-bottom: 2rem;">
-                        Join our mission to protect marine ecosystems through innovative AI solutions. Whether you're a researcher, 
-                        developer, or ocean advocate, there are many ways to contribute.
-                    </p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="https://github.com/zyronvon/Microplastics_results" class="btn" target="_blank">📋 View Research</a>
-                        <a href="mailto:info@aquasentinel.org" class="btn-secondary">✉️ Contact Us</a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Credits -->
             <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(27, 38, 59, 0.5); border-radius: 12px;">
                 <p style="color: #b0c4de; font-size: 0.9rem;">
                     <strong>Data Source:</strong> Research results from 
-                    <a href="https://github.com/zyronvon/Microplastics_results" style="color: #00bcd4;" target="_blank">
+                    <a href="https://github.com/zyronvon/Microplastics_results" style="color: var(--accent);" target="_blank">
                         Microplastics Detection Research Repository
                     </a>
                 </p>
@@ -170,6 +139,35 @@
             </div>
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>AquaSentinel</h4>
+                <p>Microplastics detection powered by deep learning and transparent research outputs.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Application</h5>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="about.html">Project info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Links</h5>
+                <ul>
+                    <li><a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                    <li><a href="mailto:info@aquasentinel.org">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 AquaSentinel • Built for environmental research and ocean health</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
