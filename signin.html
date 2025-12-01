@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - AquaSentinel</title>
+    <meta name="description" content="Sign in to the AquaSentinel dashboard to explore AI-powered microplastics detection results.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">AquaSentinel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">Project info</a></li>
+                <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="card glass" style="max-width: 480px; margin: 0 auto;">
+<h1 style="font-size: 2.2rem; margin-bottom: 0.5rem; color: var(--accent);">Welcome back</h1>
+                    <p style="color: #b0c4de; margin-bottom: 2rem;">
+                        Sign in to access the AquaSentinel dashboard, explore prediction results, and review microplastics analysis.
+                    </p>
+
+                    <form id="signInForm" onsubmit="handleSignIn(event)">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                        </div>
+                        <p style="color: #b0c4de; font-size: 0.9rem; text-align: center; margin-top: 0.75rem;">
+                            Demo credentials: <strong>admin / password</strong> (no real account required)
+                        </p>
+                    </form>
+
+                    <div style="margin-top: 2rem; font-size: 0.9rem; color: #b0c4de; text-align: center;">
+                        <p>Just exploring?</p>
+                        <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
+                            <a href="index.html" class="btn-secondary">Back to Home</a>
+                            <a href="about.html" class="btn-secondary">About the Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>AquaSentinel Access</h4>
+                <p>Secure entry point into the dashboard and analysis environment.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="about.html">Project info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Research</h5>
+                <ul>
+                    <li><a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                    <li><a href="mailto:info@aquasentinel.org">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 AquaSentinel • Sign-in gateway</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
