@@ -13,10 +13,9 @@
         <nav>
             <a href="index.html" class="logo">AquaSentinel</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Landing</a></li>
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">Project info</a></li>
                 <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
@@ -26,16 +25,40 @@
     <!-- Main Content -->
     <main>
         <div class="container fade-in">
-            <div class="flex justify-between align-center mb-2">
-                <h1 style="color: #00bcd4; font-size: 2.5rem;">Model Results Dashboard</h1>
-                <button id="exportBtn" class="btn" onclick="exportCSV()">📥 Export Data</button>
+            <div class="flex justify-between align-center mb-2" style="gap: 1.5rem; flex-wrap: wrap;">
+                <div>
+                    <h1 style="color: var(--accent); font-size: 2.2rem;">Model Results Dashboard</h1>
+                    <p style="color: var(--muted); font-size: 0.95rem; max-width: 480px; margin-top: 0.35rem;">
+                        Inspect CNN microplastics predictions, confidence distributions, and error patterns from the latest analysis run.
+                    </p>
+                </div>
+                <div class="flex gap-1" style="align-items: center; flex-wrap: wrap;">
+                    <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: #9ca3af;">
+                        Export
+                    </span>
+                    <button id="exportBtn" class="btn" onclick="exportCSV()">📥 Export CSV</button>
+                </div>
             </div>
 
             <!-- Dashboard Grid -->
             <div class="dashboard-grid">
                 <!-- CSV Data Card -->
                 <div class="data-card">
-                    <h3>📊 Prediction Results</h3>
+                    <h3>Prediction results</h3>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Tabular view of sample-level predictions streamed from the latest GitHub export.
+                    </p>
+                    <div class="table-controls">
+                        <div class="table-filters">
+                            <button type="button" class="chip active" data-filter="all">All</button>
+                            <button type="button" class="chip" data-filter="high">High ≥80%</button>
+                            <button type="button" class="chip" data-filter="medium">50–80%</button>
+                            <button type="button" class="chip" data-filter="low">Low &lt;50%</button>
+                        </div>
+                        <div class="table-meta">
+                            <span id="tableRowCount" class="table-meta-text"></span>
+                        </div>
+                    </div>
                     <div id="csvLoading" class="loading">Loading prediction data...</div>
                     <div id="csvError" class="error hidden">Failed to load prediction data. Please try again.</div>
                     <div class="table-container" id="csvTableContainer" style="display: none;">
@@ -48,7 +71,10 @@
 
                 <!-- Confidence Histogram -->
                 <div class="data-card">
-                    <h3>📈 Confidence Distribution</h3>
+                    <h3>Confidence distribution</h3>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Aggregated confidence scores across all predictions to reveal calibration and uncertainty.
+                    </p>
                     <div id="histogramLoading" class="loading">Loading confidence histogram...</div>
                     <div id="histogramError" class="error hidden">Failed to load confidence histogram.</div>
                     <div class="chart-container" id="histogramContainer" style="display: none;">
@@ -58,7 +84,10 @@
 
                 <!-- Misclassified Samples -->
                 <div class="data-card">
-                    <h3>❌ Misclassified Samples</h3>
+                    <h3>Misclassified samples</h3>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Visual diagnostics for samples where predicted and reference classes disagree.
+                    </p>
                     <div id="misclassifiedLoading" class="loading">Loading misclassified samples...</div>
                     <div id="misclassifiedError" class="error hidden">Failed to load misclassified samples.</div>
                     <div class="chart-container" id="misclassifiedContainer" style="display: none;">
@@ -68,7 +97,10 @@
 
                 <!-- Sample Predictions -->
                 <div class="data-card">
-                    <h3>🔍 Sample Predictions</h3>
+                    <h3>Sample predictions</h3>
+                    <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Example predictions and probability mass to build intuition about what the model sees.
+                    </p>
                     <div id="samplesLoading" class="loading">Loading sample predictions...</div>
                     <div id="samplesError" class="error hidden">Failed to load sample predictions.</div>
                     <div class="chart-container" id="samplesContainer" style="display: none;">
@@ -79,28 +111,57 @@
 
             <!-- Statistics Summary -->
             <div class="card mt-2">
-                <h3>📋 Summary Statistics</h3>
+                <h3>Summary statistics</h3>
                 <div id="statsContainer" class="flex justify-between gap-1" style="flex-wrap: wrap;">
-                    <div class="stat-item" style="background: rgba(0, 188, 212, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
-                        <div style="font-size: 2rem; color: #00bcd4; font-weight: 700;" id="totalSamples">-</div>
-                        <div style="color: #b0c4de;">Total Samples</div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.8rem; color: var(--accent); font-weight: 700;" id="totalSamples">-</div>
+                        <div style="color: var(--muted);">Total samples</div>
                     </div>
-                    <div class="stat-item" style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
-                        <div style="font-size: 2rem; color: #4caf50; font-weight: 700;" id="avgConfidence">-</div>
-                        <div style="color: #b0c4de;">Avg Confidence</div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.8rem; color: var(--accent); font-weight: 700;" id="avgConfidence">-</div>
+                        <div style="color: var(--muted);">Avg confidence</div>
                     </div>
-                    <div class="stat-item" style="background: rgba(255, 152, 0, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
-                        <div style="font-size: 2rem; color: #ff9800; font-weight: 700;" id="highConfSamples">-</div>
-                        <div style="color: #b0c4de;">High Confidence (>80%)</div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.8rem; color: var(--accent); font-weight: 700;" id="highConfSamples">-</div>
+                        <div style="color: var(--muted);">High confidence (≥80%)</div>
                     </div>
-                    <div class="stat-item" style="background: rgba(244, 67, 54, 0.1); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
-                        <div style="font-size: 2rem; color: #f44336; font-weight: 700;" id="lowConfSamples">-</div>
-                        <div style="color: #b0c4de;">Low Confidence (<50%)</div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.8rem; color: var(--accent); font-weight: 700;" id="lowConfSamples">-</div>
+                        <div style="color: var(--muted);">Low confidence (&lt;50%)</div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>AquaSentinel</h4>
+                <p>Data-forward insights into microplastics predictions and model behavior.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="about.html">Project info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Research</h5>
+                <ul>
+                    <li><a href="about.html">About the Project</a></li>
+                    <li><a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 AquaSentinel • Dashboard interface for microplastics analysis</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Image Modal -->
     <div id="imageModal" class="modal">
@@ -111,11 +172,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Load dashboard data when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadDashboardData();
-        });
-    </script>
 </body>
 </html>
