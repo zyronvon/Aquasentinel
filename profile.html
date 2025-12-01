@@ -13,10 +13,9 @@
         <nav>
             <a href="index.html" class="logo">AquaSentinel</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Landing</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="profile.html" class="active">Profile</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">Project info</a></li>
                 <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
@@ -28,14 +27,14 @@
         <div class="container fade-in">
             <!-- Profile Header -->
             <div class="profile-header">
-                <div class="profile-avatar">AS</div>
+                <div class="profile-avatar">ZV</div>
                 <div class="profile-info">
-                    <h2>Aquasentinel</h2>
-                    <p><strong>Email:</strong> guday6927@gmail.com</p>
-                    <p><strong>Role:</strong> student</p>
-                    <p><strong>Department:</strong> iter,soa</p>
+                    <h2>zyronvon</h2>
+                    <p><strong>Email:</strong> <a href="mailto:zyronvon@example.com" style="color: var(--muted); text-decoration: underline;">zyronvon@example.com</a></p>
+                    <p><strong>Role:</strong> Researcher / Developer</p>
+                    <p><strong>Affiliation:</strong> Independent Research</p>
                     <p><strong>Last Login:</strong> <span id="lastLogin">Today, 10:30 AM</span></p>
-                    <p style="margin-top: 1rem; color: #00bcd4;"><strong>Specialization:</strong> </p>
+<p style="margin-top: 1rem; color: var(--accent);"><strong>Specialization:</strong> Computer Vision, Deep Learning, Environmental Monitoring</p>
                 </div>
             </div>
 
@@ -43,7 +42,7 @@
 
             <!-- Image Gallery -->
             <div class="card">
-                <h3>🖼️ Analysis Results Gallery</h3>
+                <h3>Analysis results gallery</h3>
                 <p style="color: #b0c4de; margin-bottom: 2rem;">Collection of visualization results from microplastics detection models</p>
                 
                 <div id="galleryLoading" class="loading">Loading image gallery...</div>
@@ -54,11 +53,46 @@
                 </div>
             </div>
 
-           
-                
+            <div class="card mt-2">
+                <h3>Activity timeline</h3>
+                <p style="color: #b0c4de; margin-bottom: 1.5rem;">Recent interactions in this browser session. This is a local-only log based on demo usage.</p>
+                <div id="activityEmpty" style="color:#6b7280; font-size:0.9rem;">
+                    No activity recorded yet. Actions such as signing in, viewing the dashboard, or exporting CSVs will appear here.
+                </div>
+                <ul class="timeline" id="activityTimeline"></ul>
             </div>
+
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>User Workspace</h4>
+                <p>Profile, gallery, and recent activity associated with AquaSentinel analysis sessions.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Application</h5>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="about.html">Project info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Research Links</h5>
+                <ul>
+                    <li><a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                    <li><a href="mailto:info@aquasentinel.org">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 AquaSentinel • Research profile view</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Image Modal -->
     <div id="imageModal" class="modal">
@@ -69,21 +103,6 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Load profile gallery when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProfileGallery();
-            updateLastLogin();
-        });
-
-        function updateLastLogin() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const dateString = now.toLocaleDateString() === new Date().toLocaleDateString() ? 'Today' : now.toLocaleDateString();
-            document.getElementById('lastLogin').textContent = `${dateString}, ${timeString}`;
-        }
-    </script>
 </body>
 </html>
-
 
