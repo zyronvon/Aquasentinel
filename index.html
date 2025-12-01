@@ -13,33 +13,225 @@
         <nav>
             <a href="index.html" class="logo">AquaSentinel</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Landing</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">Project info</a></li>
                 <li><a href="#" onclick="signOut()" class="btn-secondary">Sign Out</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </div>
 
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
     <!-- Main Content -->
     <main>
         <section class="hero">
             <div class="container">
-                <h1>AquaSentinel</h1>
-                <p>AI-powered detection of microplastics in water samples</p>
-                <button class="btn" onclick="showSignInModal()">Sign In</button>
+                <div class="hero-slider glass" id="heroSlider">
+                    <div class="hero-slide active">
+                        <h1>AquaSentinel</h1>
+                        <p>AI-powered detection of microplastics in water samples with a research-grade CNN model and reproducible outputs.</p>
+                        <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                            <button class="btn" onclick="showSignInModal()">Sign in with demo credentials</button>
+                            <button type="button" class="btn-secondary" style="padding:1rem 1.25rem;" onclick="goToDashboard()">Open dashboard</button>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <h1>Inspect model behaviour</h1>
+                        <p>Review prediction tables, confidence distributions, and misclassified samples sourced directly from the research repository.</p>
+                        <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                            <a href="about.html" class="btn">About the project</a>
+                            <a href="profile.html" class="btn-secondary">Research workspace</a>
+                        </div>
+                    </div>
+                    <div class="hero-controls" id="heroDots"></div>
+                </div>
+            </div>
+            <div class="container" style="margin-top: 1.5rem; max-width: 800px;">
+                <p class="section-subtitle" style="text-align:center; font-size:0.95rem;">
+                    <strong>Data &amp; methods.</strong> Predictions (CSV) and visual artifacts are loaded from the
+                    <a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">Microplastics_results</a>
+                    repository, which hosts a convolutional neural network (CNN) trained for microplastic particle detection.
+                </p>
+            </div>
+            <div class="scroll-indicator">
+                <span class="scroll-indicator-line"></span>
+                <span class="scroll-indicator-label">Scroll to explore</span>
+            </div>
+        </section>
+
+        <section class="section" id="overview">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Research prototype</p>
+                    <h2>System overview</h2>
+                    <p class="section-subtitle">
+                        AquaSentinel exposes outputs from a convolutional neural network (CNN) for microplastics detection so you can quickly inspect predictions, confidence, and failure modes.
+                    </p>
+                </div>
+
+                <div class="metrics-row">
+                    <div class="metric-pill">
+                        <span class="metric-label">Model</span>
+                        <span class="metric-value">Deep CNN-based vision pipeline</span>
+                    </div>
+                    <div class="metric-pill">
+                        <span class="metric-label">Data Source</span>
+                        <span class="metric-value">GitHub research repository outputs</span>
+                    </div>
+                    <div class="metric-pill">
+                        <span class="metric-label">Focus</span>
+                        <span class="metric-value">Microplastics detection & confidence analysis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="predictions">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Results</p>
+                    <h2>Sample-level predictions (preview)</h2>
+                    <p class="section-subtitle">
+                        A live preview of the latest microplastics model run. Explore a subset of predictions directly from the
+                        research repository.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Prediction table preview</h3>
+                    <div class="table-controls">
+                        <div class="table-filters">
+                            <button type="button" class="chip active" data-filter="all">All</button>
+                            <button type="button" class="chip" data-filter="high">High ≥80%</button>
+                            <button type="button" class="chip" data-filter="medium">50–80%</button>
+                            <button type="button" class="chip" data-filter="low">Low &lt;50%</button>
+                        </div>
+                        <div class="table-meta">
+                            <span id="tableRowCount" class="table-meta-text"></span>
+                        </div>
+                    </div>
+                    <div id="csvLoading" class="loading">Loading prediction data...</div>
+                    <div id="csvError" class="error hidden">Failed to load prediction data. Please try again.</div>
+                    <div class="table-container" id="csvTableContainer" style="display: none;">
+                        <table id="csvTable">
+                            <thead id="csvTableHead"></thead>
+                            <tbody id="csvTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <h3>Summary statistics</h3>
+                <div id="statsContainer" class="flex justify-between gap-1" style="flex-wrap: wrap;">
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.6rem; color: var(--accent); font-weight: 700;" id="totalSamples">-</div>
+                        <div style="color: var(--muted);">Total samples</div>
+                    </div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.6rem; color: var(--accent); font-weight: 700;" id="avgConfidence">-</div>
+                        <div style="color: var(--muted);">Avg confidence</div>
+                    </div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.6rem; color: var(--accent); font-weight: 700;" id="highConfSamples">-</div>
+                        <div style="color: var(--muted);">High confidence (≥80%)</div>
+                    </div>
+                    <div class="stat-item" style="background: rgba(15,23,42,0.95); padding: 1rem; border-radius: 8px; text-align: center; min-width: 150px;">
+                        <div style="font-size: 1.6rem; color: var(--accent); font-weight: 700;" id="lowConfSamples">-</div>
+                        <div style="color: var(--muted);">Low confidence (&lt;50%)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="visuals">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">Diagnostics &amp; error analysis</p>
+                    <h2>Confidence, errors, and exemplar samples</h2>
+                    <p class="section-subtitle">
+                        Visual artifacts generated alongside the CSV export, giving quick intuition about calibration and failure modes.
+                    </p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="data-card">
+                        <h3>Confidence distribution</h3>
+                        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                            Aggregated confidence scores across all predictions to reveal calibration and uncertainty.
+                        </p>
+                        <div id="histogramLoading" class="loading">Loading confidence histogram...</div>
+                        <div id="histogramError" class="error hidden">Failed to load confidence histogram.</div>
+                        <div class="chart-container" id="histogramContainer" style="display: none;">
+                            <img id="histogramImg" alt="Confidence Histogram" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <h3>Misclassified samples</h3>
+                        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                            Visual diagnostics for samples where predicted and reference classes disagree.
+                        </p>
+                        <div id="misclassifiedLoading" class="loading">Loading misclassified samples...</div>
+                        <div id="misclassifiedError" class="error hidden">Failed to load misclassified samples.</div>
+                        <div class="chart-container" id="misclassifiedContainer" style="display: none;">
+                            <img id="misclassifiedImg" alt="Misclassified Samples" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <h3>Sample predictions</h3>
+                        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                            Example predictions and probability mass to build intuition about what the model sees.
+                        </p>
+                        <div id="samplesLoading" class="loading">Loading sample predictions...</div>
+                        <div id="samplesError" class="error hidden">Failed to load sample predictions.</div>
+                        <div class="chart-container" id="samplesContainer" style="display: none;">
+                            <img id="samplesImg" alt="Sample Predictions" onclick="openModal(this)">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>AquaSentinel</h4>
+                <p>AI-assisted microplastics analysis, designed for research workflows and ocean monitoring.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Explore</h5>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Research</h5>
+                <ul>
+                    <li><a href="https://github.com/zyronvon/Microplastics_results" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                    <li><a href="mailto:info@aquasentinel.org">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 AquaSentinel • Research prototype interface</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Sign In Modal -->
     <div id="signInModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="hideSignInModal()">&times;</span>
             <div class="form-container card">
-                <h2 style="text-align: center; color: #00bcd4; margin-bottom: 2rem;">Sign In to AquaSentinel</h2>
+<h2 style="text-align: center; color: var(--accent); margin-bottom: 2rem;">Sign In to AquaSentinel</h2>
                 <form id="signInForm" onsubmit="handleSignIn(event)">
                     <div class="form-group">
                         <label for="username">Username</label>
