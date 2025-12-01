@@ -45,6 +45,10 @@ body::before {
     z-index: -1;
 }
 
+.full-width {
+    grid-column: 1 / -1 !important;
+}
+
 /* Navigation */
 .nav-container {
     background: rgba(15, 23, 42, 0.96);
@@ -1060,3 +1064,4 @@ tr:hover td {
 .gap-1 {
     gap: 1rem;
 }
+
